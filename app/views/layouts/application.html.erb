@@ -29,9 +29,27 @@
         <li class="<%= "active" if current_page?("/") %>">
           <%= link_to "Home", root_path %>
         </li>
-        
+        <% unless user_signed_in? %>
+          <li class="<%= "active" if current_page?("/users/sign_up") %>">
+            <%= link_to "注册", new_user_registration_path %>
+          </li>
+          <li class="<%= "active" if current_page?("/users/sign_in") %>">
+              <%= link_to "登录", new_user_session_path %>
+          </li>
+        <% end %>
       </ul>
-      
+      <% if user_signed_in? %>
+        <div class="navbar-right">
+          <p class="navbar-text">
+            <%= current_user.email %>
+          </p>
+          <ul class="nav navbar-nav">
+            <li><%= link_to "退出", destroy_user_session_path,
+              method: :delete %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>
