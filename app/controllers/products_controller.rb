@@ -1,10 +1,11 @@
 class ProductsController < ApplicationController
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
+
   def index
     @products = Product.all
   end
 
   def show
-    @product = Product.find( params[:id] )
   end
 
   def new
@@ -24,12 +25,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find( params[:id] )
   end
 
   def update
-    @product = Product.find( params[:id] )
-
     if @product.update( product_params )
       flash[:notice] = "商品修改成功"
       redirect_to @product
@@ -40,7 +38,6 @@ class ProductsController < ApplicationController
   end
 
   def destroy
-    @product = Product.find( params[:id] )
     @product.destroy
 
     flash[:notice] = "商品成功删除"
@@ -48,6 +45,13 @@ class ProductsController < ApplicationController
   end
 
   private
+
+    def set_product
+      @product = Product.find( params[:id] )
+    rescue ActiveRecord::RecordNotFound
+      flash[:alert] = "该商品不存在"
+      redirect_to products_path
+    end
 
     def product_params
       params.require(:product).permit(:name, :price)
