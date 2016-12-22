@@ -10,6 +10,7 @@ RSpec.feature "用户可以修改已有商品" do
 
     click_link "修改"
   end
+  
   scenario "如果正确填写商品参数" do
     fill_in "商品名", with: "新型电水壶"
     fill_in "价格", with: 150
