@@ -1,11 +1,11 @@
 require "rails_helper"
 
 RSpec.feature "用户可以查看已有商品" do
-  let(:user) { FactoryGirl.create(:user, :admin) }
+  let(:admin) { FactoryGirl.create(:user, :admin) }
   let!(:product) { FactoryGirl.create(:product, name: "电水壶") }
   
   scenario "带有商品的详情" do
-    sign_in(user)
+    sign_in(admin)
     visit admin_root_path
 
     click_link "商品管理"
