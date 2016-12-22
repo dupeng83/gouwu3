@@ -1,27 +1,32 @@
-<div class="row">
-  <%= render "sidebar" %>
+<header>
+  <h1>商品列表</h1>
 
-  <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-    <h1 class="sub-header">商品列表</h1>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>商品名</th>
-            <th>价格</th>
-          </tr>
-        </thead>
-        <tbody>
-        <% @products.each do |product| %>
-          <tr>
-            <td><%= product.id %></td>
-            <td><%= link_to product.name, product %></td>
-            <td><%= product.price %></td>
-          </tr>
-        <% end %>
-        </tbody>
-      </table>
-    </div>
+  <ul class="actions">
+    <li>
+      <%= link_to "添加新商品", new_product_path, class: "new" %>
+    </li>
+  </ul>
+</header>
+
+<div id="products" class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>商品名</th>
+          <th>价格</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= product.id %></td>
+          <td><%= link_to product.name, product %></td>
+          <td><%= product.price %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 </div>
