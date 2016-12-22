@@ -1,0 +1,6 @@
+<%= simple_form_for( product ) do |f| %>
+  <%= f.input :name, label: '商品名' %>
+  <%= f.input :price, label: '价格', error: '请填写一个价格数值' %>
+
+  <%= f.button :submit, "添加", class: 'btn-primary' %>
+<% end %>
