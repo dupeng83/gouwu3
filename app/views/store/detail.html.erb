@@ -1,0 +1,9 @@
+<h1><%= @product.name %></h1>
+<p>价格: <%= @product.price %></p>
+
+<%= simple_form_for @cart, url: create_cart_path do |f| %>
+  <%= f.input :amount, label: "数量" %>
+  <%= f.input :product_id, as: :hidden %>
+  
+  <%= f.button :submit, "加入购物车", class: "btn btn-primary" %>
+<% end %>

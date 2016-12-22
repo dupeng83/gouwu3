@@ -1,0 +1,20 @@
+<header>
+  <h1>购物车</h1>
+</header>
+
+<%= form_for current_user, url: cart_submit_path do |user_form| %>
+  <% current_user.carts.each do |cart| %>
+    <%= user_form.fields_for cart, index: cart.id do |cart_form|%>
+      <%= cart.product.name %>
+      <%= cart.product.price %>
+      <%= cart_form.number_field :amount %>
+      <%= cart.product.price * cart.amount %>
+      <br>
+    <% end %>
+  <% end %>
+
+  <p>总价:</p>
+  <%= @total_price %>
+
+  <%= user_form.submit "去结算" %>
+<% end %>
