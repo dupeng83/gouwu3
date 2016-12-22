@@ -30,8 +30,13 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# gem "devise"
+gem "bootstrap-sass"
+gem "font-awesome-rails"
 gem "simple_form"
+# gem "devise"
+# gem "pundit"
+
+# gem "carrierwave"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,6 +56,7 @@ end
 group :test do
   gem 'capybara'
   gem 'factory_girl_rails'
+  # gem "selenium-webdriver"
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
