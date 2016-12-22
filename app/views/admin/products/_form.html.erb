@@ -1,4 +1,4 @@
-<%= simple_form_for( product ) do |f| %>
+<%= simple_form_for( [ :admin, product ] ) do |f| %>
   <%= f.input :name, label: '商品名' %>
   <%= f.input :price, label: '价格', error: '请填写一个价格数值' %>
 

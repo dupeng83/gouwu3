@@ -5,8 +5,9 @@ RSpec.feature "用户可以添加新商品" do
 
   before do
     sign_in(user)
-    visit "/"
+    visit admin_root_path
 
+    click_link "商品管理"
     click_link "添加新商品"
   end
   
