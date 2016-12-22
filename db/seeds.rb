@@ -6,6 +6,14 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+unless User.exists?(email: "admin@example.com")
+  User.create!(email: "admin@example.com", password: "password", admin: true)
+end
+
+unless User.exists?(email: "viewer@example.com")
+  User.create!(email: "viewer@example.com", password: "password")
+end
+
 unless Product.exists?(name: "电水壶")
   Product.create!(name: "电水壶", price: 100)
 end

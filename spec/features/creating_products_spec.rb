@@ -1,7 +1,10 @@
 require "rails_helper"
 
 RSpec.feature "用户可以添加新商品" do
+  let(:user) { FactoryGirl.create(:user, :admin) }
+
   before do
+    sign_in(user)
     visit "/"
 
     click_link "添加新商品"
