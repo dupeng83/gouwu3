@@ -1,3 +1,18 @@
 // Place all the styles related to the store controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+form#new_cart {
+  max-width: 200px;
+}
+
+table #total_price {
+  text-align: right;
+}
+
+/*
+form.cart_submit input[type="submit"] {
+  position: relative;
+  left: 430px;
+}
+*/

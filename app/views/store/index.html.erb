@@ -2,18 +2,17 @@
   <h1>商品列表</h1>
 </header>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>商品名</th>
       <th>价格</th>
     </tr>
   </thead>
-
-<% @products.each do |product| %>
-  <tr>
-    <td><%= link_to product.name, pd_path( product )%></td>
-    <td><%= product.price %></td>
-  </tr>
-<% end %>
+  <% @products.each do |product| %>
+    <tr>
+      <td><%= link_to product.name, pd_path( product )%></td>
+      <td><%= product.price %></td>
+    </tr>
+  <% end %>
 </table>

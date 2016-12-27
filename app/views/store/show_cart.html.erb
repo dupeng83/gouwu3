@@ -2,19 +2,35 @@
   <h1>购物车</h1>
 </header>
 
-<%= form_for current_user, url: cart_submit_path do |user_form| %>
-  <% current_user.carts.each do |cart| %>
-    <%= user_form.fields_for cart, index: cart.id do |cart_form|%>
-      <%= cart.product.name %>
-      <%= cart.product.price %>
-      <%= cart_form.number_field :amount %>
-      <%= cart.product.price * cart.amount %>
-      <br>
+<div class="row">
+  <div class="col-md-6">
+    <%= form_for current_user, url: cart_submit_path, html: { class: "cart_submit" } do |user_form| %>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>价格</th>
+            <th>购买数量</th>
+            <th>小计</th>
+          </tr>
+        </thead>
+        <% current_user.carts.each do |cart| %>
+          <tr>
+            <%= user_form.fields_for cart, index: cart.id do |cart_form|%>
+              <td><%= cart.product.name %></td>
+              <td><%= cart.product.price %></td>
+              <td><%= cart_form.number_field :amount, class: "num-input" %></td>
+              <td><%= cart.product.price * cart.amount %></td>
+            <% end %>
+          <tr>
+        <% end %>
+        <tr>
+          <td colspan="4" id="total_price">
+            总价:<%= @total_price %>
+          </td>
+        </tr>
+      </table>
+      <%= user_form.submit "去结算", class: "btn btn-primary" %>
     <% end %>
-  <% end %>
-
-  <p>总价:</p>
-  <%= @total_price %>
-
-  <%= user_form.submit "去结算" %>
-<% end %>
+  </div>
+</div>
