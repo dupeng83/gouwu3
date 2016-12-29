@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'orders/index'
+
   namespace :admin do
     root 'application#index'
     
@@ -20,5 +22,34 @@ Rails.application.routes.draw do
   get '/show_cart', to: 'store#show_cart'
 
   #提交购物车表单(去结算)的路由
-  patch '/cart_submit', to: 'store#create_order_item'
+  patch '/cart_submit', to: 'store#update_cart'
+
+  #显示地址选择页面的路由
+  get '/addresses', to: 'store#show_addresses'
+
+  #创建新地址的路由
+  post '/create_address', to: 'store#create_address'
+
+  #地址选择页面选择已有地址的路由
+  get '/set_addresses/:id', to: 'store#set_address', as: 'set_address'
+
+  #显示配送和付款方式的路由
+  get '/new_pay_deliver', to: 'store#new_pay_deliver'
+
+  #创建配送和付款的方式(存入session)
+  post '/create_pay_deliver', to: 'store#create_pay_deliver'
+
+  #显示订单总结页面,点提交就生成订单
+  get '/show_order', to: 'store#show_order'
+
+  #生成订单
+  post '/create_order', to: 'store#create_order'
+
+  #显示处理交款页面
+  get "/new_pay", to: 'store#new_pay'
+
+  #处理交款
+  get "/create_pay/:id", to: 'store#create_pay', as: 'create_pay'
+
+  resources :orders, only: [:index]
 end

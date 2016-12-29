@@ -1,0 +1,21 @@
+<header>
+  <h1>付款和配送方式</h1>
+</header>
+
+<%= form_for :pay_deliver, url: create_pay_deliver_path do |f| %>
+  <div class="pay">
+    <label>付款方式</label><br>
+    <%= radio_button_tag(:pay, "daofu") %>
+    <%= label_tag(:pay_daofu, "货到付款") %>
+    <%= radio_button_tag(:pay, "zhongyin") %>
+    <%= label_tag(:pay_zhongyin, "中国银行") %>
+  </div>
+  <div class="deliver">
+    <label>邮寄方式</label><br>
+    <%= radio_button_tag(:deliver, "kuaidi") %>
+    <%= label_tag(:deliver_kuaidi, "快递") %>
+    <%= radio_button_tag(:deliver, "youju") %>
+    <%= label_tag(:deliver_youju, "邮局包裹") %>
+  </div>
+  <%= f.submit "提交", class: "btn btn-primary" %>
+<% end %>

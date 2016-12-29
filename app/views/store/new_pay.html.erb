@@ -1,0 +1,7 @@
+<header>
+  <h1>付款</h1>
+</header>
+
+请点击下面的链接付款:
+<%= link_to "付款", create_pay_path( session[:current_order_id] ),
+  class: "btn btn-primary" %>

@@ -1,0 +1,36 @@
+<header>
+  <h1>请选择配送地址</h1>
+</header>
+
+<div class="row">
+  <% @addresses.each do |address| %>
+    <% if address.persisted? %>
+      <div class="col-md-4">
+        <div class="address-select">
+          <ul>
+            <li><b><%= address.name %></b></li>
+            <li><%= address.addr %></li>
+          </ul>
+          <%= link_to "使用这个地址", set_address_path(address),
+            class: "btn btn-primary btn-sm btn-block" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<header>
+  <h3>添加新地址</h3>
+</header>
+
+<div class="row">
+  <div class="col-md-6 new-address">
+    <%= simple_form_for @address, url: create_address_path do |f| %>
+      <%= f.input :name, label: "收货人姓名" %>
+      <%= f.input :addr, label: "地址" %>
+      <%= f.input :default, label: "设为默认地址" %>
+      
+      <%= f.button :submit, "创建新地址", class: "btn-primary" %>
+    <% end %>
+  </div>
+</div>

@@ -23,6 +23,8 @@ RSpec.feature "用户可以将商品添加到购物车" do
     fill_in "数量", with: 3
     click_button "加入购物车"
 
+    expect(page.current_url).to eq show_cart_url
+    
     within("table") do
       expect(page).to have_content "电视机"
       expect(page).to have_content "电冰箱"
@@ -34,7 +36,7 @@ RSpec.feature "用户可以将商品添加到购物车" do
     # end
 
     within("td#total_price") do
-      expect(page).to have_content "5400"
+      expect(page).to have_content television.price * 2 + fridge.price * 3
     end
     # expect(page).to have_content 5 * product.price
   end
@@ -54,7 +56,7 @@ RSpec.feature "用户可以将商品添加到购物车" do
     # end
 
     within("td#total_price") do
-      expect(page).to have_content "7500"
+      expect(page).to have_content television.price * (2 + 3)
     end
   end
 end

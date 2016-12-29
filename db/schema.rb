@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161222124522) do
+ActiveRecord::Schema.define(version: 20161227131534) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string   "name"
+    t.string   "addr"
+    t.boolean  "default",    default: false
+    t.integer  "user_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
 
   create_table "carts", force: :cascade do |t|
     t.integer  "amount"
@@ -20,6 +30,31 @@ ActiveRecord::Schema.define(version: 20161222124522) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_carts_on_product_id"
     t.index ["user_id"], name: "index_carts_on_user_id"
+  end
+
+  create_table "orderitems", force: :cascade do |t|
+    t.integer  "order_id"
+    t.integer  "product_id"
+    t.integer  "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["order_id"], name: "index_orderitems_on_order_id"
+    t.index ["product_id"], name: "index_orderitems_on_product_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "user_id"
+    t.decimal  "total_price",    precision: 8, scale: 2
+    t.integer  "address_id"
+    t.boolean  "paid",                                   default: false
+    t.boolean  "posted",                                 default: false
+    t.boolean  "received",                               default: false
+    t.string   "pay_method"
+    t.string   "deliver_method"
+    t.datetime "created_at",                                             null: false
+    t.datetime "updated_at",                                             null: false
+    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
   create_table "products", force: :cascade do |t|

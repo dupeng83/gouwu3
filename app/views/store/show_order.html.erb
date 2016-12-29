@@ -1,0 +1,53 @@
+<header>
+  <h1>订单提交</h1>
+</header>
+
+<h3></h3>
+<% total_price = 0 %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名</th>
+      <th>价格</th>
+      <th>购买数量</th>
+      <th>小计</th>
+    </tr>
+  </thead>
+  <% current_user.carts.each do |cart| %>
+    <tr>
+      <td><%= cart.product.name %></td>
+      <td><%= cart.product.price %></td>
+      <td><%= cart.amount %></td>
+      <td><%= cart.product.price * cart.amount %></td>
+    <tr>
+    <% total_price += cart.product.price * cart.amount %>
+  <% end %>
+  <tr>
+    <td colspan="4" id="total_price">
+      总价:<%= total_price %>
+    </td>
+  </tr>
+</table>
+
+<h3>地址</h3>
+<p>收货人姓名:<%= @address.name %></p>
+<p>收货地址:<%= @address.addr %></p>
+
+<h3>付款和邮寄方式</h3>
+<%= form_for :pay_deliver, url: create_order_path do |f| %>
+  <div class="pay">
+    <label>付款方式</label><br>
+    <%= radio_button_tag(:pay, "daofu", session[:pay] == "daofu" ? true : false) %>
+    <%= label_tag(:pay_daofu, "货到付款") %>
+    <%= radio_button_tag(:pay, "zhongyin", session[:pay] == "zhongyin" ? true : false) %>
+    <%= label_tag(:pay_zhongyin, "中国银行") %>
+  </div>
+  <div class="deliver">
+    <label>邮寄方式</label><br>
+    <%= radio_button_tag(:deliver, "kuaidi", session[:deliver] == "kuaidi" ? true : false) %>
+    <%= label_tag(:deliver_kuaidi, "快递") %>
+    <%= radio_button_tag(:deliver, "youju", session[:deliver] == "youju" ? true : false) %>
+    <%= label_tag(:deliver_youju, "邮局包裹") %>
+  </div>
+  <%= f.submit "提交订单", class: "btn btn-primary" %>
+<% end %>

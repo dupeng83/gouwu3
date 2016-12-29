@@ -1,0 +1,24 @@
+<header>
+  <h1>订单</h1>
+</header>
+
+<table class="table">
+  <tr>
+    <th>订单号</th>
+    <th>订单总价</th>
+    <th>选项</th>
+  </tr>
+
+  <% current_user.orders.each do |order| %>
+    <tr>  
+      <td><%= order.id %></td>
+      <td><%= order.total_price %></td>
+      <td>
+        <% unless order.paid? %>
+          <%= link_to "付款", create_pay_path( order.id ),
+            class: "btn btn-primary" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
