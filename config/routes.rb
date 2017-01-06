@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     
     resources :products
     resources :users
+    resources :orders, only: [:index] do
+      member do
+        get :deliver
+      end
+    end
   end
 
   devise_for :users

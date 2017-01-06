@@ -1,0 +1,41 @@
+<header>
+  <h1>需要发货订单</h1>
+</header>
+
+<table class="table">
+  <tr>
+    <th>订单号</th>
+    <th>订单总价</th>
+    <th>选项</th>
+  </tr>
+
+  <% @orders_to_be_delivered.each do |order| %>
+    <tr>  
+      <td><%= order.id %></td>
+      <td><%= order.total_price %></td>
+      <td>
+        <%= link_to "邮寄", deliver_admin_order_path( order ),
+          class: "btn btn-primary" %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<header>
+  <h1>已经发货订单</h1>
+</header>
+
+<table class="table">
+  <tr>
+    <th>订单号</th>
+    <th>订单总价</th>
+    <th>选项</th>
+  </tr>
+
+  <% @orders_delivered.each do |order| %>
+    <tr>  
+      <td><%= order.id %></td>
+      <td><%= order.total_price %></td>
+    </tr>
+  <% end %>
+</table>
