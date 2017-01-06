@@ -51,6 +51,8 @@
           <ul class="nav navbar-nav">
             <li><%= link_to "购物车", show_cart_path %>
             </li>
+            <li><%= link_to "已提交的订单", orders_path %>
+            </li>
             <li><%= link_to "退出", destroy_user_session_path,
               method: :delete %>
             </li>
