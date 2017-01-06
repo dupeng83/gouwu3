@@ -5,7 +5,8 @@ class Order < ApplicationRecord
   has_many :orderitems, dependent: :destroy
 
   scope :need_to_be_delivered,
-    -> { where("paid = ? OR pay_method = ?", true, "货到付款") }
+    -> { where("(paid = ? OR pay_method = ?) AND posted = ?",
+      true, "货到付款", false) }
 
   scope :delivered,
     -> { where("posted = ?", true) }
