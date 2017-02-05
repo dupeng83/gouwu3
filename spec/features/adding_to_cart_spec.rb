@@ -41,6 +41,15 @@ RSpec.feature "用户可以将商品添加到购物车" do
     # expect(page).to have_content 5 * product.price
   end
 
+  scenario "如果没有正确填写商品数量" do
+    click_link "电冰箱"
+
+    fill_in "数量", with: 0
+    click_button "加入购物车"
+
+    expect(page).to have_content "加入购物车失败"
+  end
+
   scenario "如果同一样商品购买了两次" do
     click_link "电视机"
 

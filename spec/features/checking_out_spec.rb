@@ -46,6 +46,12 @@ RSpec.feature "用户可以去结算" do
     expect(page).to have_content "付款成功"
   end
 
+  scenario "如果没有正确填写地址信息" do
+    click_button "创建新地址"
+
+    expect(page).to have_content "新地址保存失败"
+  end
+
   scenario "如果已经有了可用的地址可以直接选择这个可用地址" do
     click_link "使用这个地址"
 
@@ -71,5 +77,14 @@ RSpec.feature "用户可以去结算" do
     # click_link "付款"
 
     # expect(page).to have_content "付款成功"
+  end
+
+  scenario "如果已经有了可用的地址可以直接选择这个可用地址" do
+    click_link "使用这个地址"
+
+    click_button "提交"
+    click_button "提交订单"
+
+    expect(page).to have_content "订单创建失败"
   end
 end

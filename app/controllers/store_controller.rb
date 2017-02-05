@@ -15,21 +15,18 @@ class StoreController < ApplicationController
     #用户要购买的商品的id
     product_id = params[:cart][:product_id]
 
-    #如果该商品已经在购物车中了,又增加了购买数量
-    if current_user.carts.exists?(product_id: product_id)
-      cart_to_save = current_user.carts.find_by(product_id: product_id)
-      cart_to_save.amount += params[:cart][:amount].to_i
-    #否则该商品就是第一次购买
-    else
-      cart_to_save = current_user.carts.build(cart_params)
-      cart_to_save.product_id = product_id
+    @cart = current_user.carts.find_or_initialize_by(product_id: product_id) do |c|
+      c.amount = 0
     end
 
-    if cart_to_save.save
+    @cart.amount += params[:cart][:amount].to_i
+
+    if @cart.save
       redirect_to show_cart_path
     else
-      alert = "加入购物车失败"
-      redirect_to root_path
+      flash.now[:alert] = "加入购物车失败"
+      @product = Product.find( product_id )
+      render "detail"
     end
   end
 
@@ -67,11 +64,11 @@ class StoreController < ApplicationController
 
     if @address.save
       flash[:notice] = "新地址已经保存"
-      # session[:address_params] = address_params
       session[:address_id] = @address.id
       redirect_to new_pay_deliver_path
     else
       flash.now[:alert] = "新地址保存失败"
+      @addresses = current_user.addresses
       render "show_addresses"
     end
   end
