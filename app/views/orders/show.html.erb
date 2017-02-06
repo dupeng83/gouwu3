@@ -1,0 +1,27 @@
+<header>
+  <h1>订单详情</h1>
+</header>
+
+<table class="table">
+  <tr>
+    <th>商品名</th>
+    <th>价格</th>
+    <th>购买数量</th>
+    <th>小计</th>
+  </tr>
+
+  <% @order.orderitems.each do |orderitem| %>
+    <tr>  
+      <td><%= orderitem.product.name %></td>
+      <td><%= orderitem.product.price %></td>
+      <td><%= orderitem.amount %></td>
+      <td><%= orderitem.product.price * orderitem.amount %></td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td colspan="4" id="total_price">
+      总价:<%= @order.total_price %>
+    </td>
+  </tr>
+</table>

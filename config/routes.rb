@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'orders/index'
-
   namespace :admin do
     root 'application#index'
     
@@ -56,5 +54,5 @@ Rails.application.routes.draw do
   #处理交款
   get "/create_pay/:id", to: 'store#create_pay', as: 'create_pay'
 
-  resources :orders, only: [:index]
+  resources :orders, only: [:index, :show]
 end

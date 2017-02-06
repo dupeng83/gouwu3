@@ -6,6 +6,10 @@
   <tr>
     <th>订单号</th>
     <th>订单总价</th>
+    <th>收货人姓名</th>
+    <th>收货地址</th>
+    <th>付款方式</th>
+    <th>邮寄方式</th>
     <th>选项</th>
   </tr>
 
@@ -13,6 +17,10 @@
     <tr>  
       <td><%= order.id %></td>
       <td><%= order.total_price %></td>
+      <td><%= order.address.name %></td>
+      <td><%= order.address.addr %></td>
+      <td><%= order.pay_method %></td>
+      <td><%= order.deliver_method %></td>
       <td>
         <%= link_to "邮寄", deliver_admin_order_path( order ),
           class: "btn btn-primary" %>
@@ -29,6 +37,10 @@
   <tr>
     <th>订单号</th>
     <th>订单总价</th>
+    <th>收货人姓名</th>
+    <th>收货地址</th>
+    <th>付款方式</th>
+    <th>邮寄方式</th>
     <th>选项</th>
   </tr>
 
@@ -36,6 +48,10 @@
     <tr>  
       <td><%= order.id %></td>
       <td><%= order.total_price %></td>
+      <td><%= order.address.name %></td>
+      <td><%= order.address.addr %></td>
+      <td><%= order.pay_method %></td>
+      <td><%= order.deliver_method %></td>
     </tr>
   <% end %>
 </table>
