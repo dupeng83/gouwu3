@@ -4,12 +4,13 @@ RSpec.feature "用户可以查看已提交的订单" do
   let!(:television) { FactoryGirl.create(:product, name: "电视机", price: 1500) }
   let!(:fridge) { FactoryGirl.create(:product, name: "电冰箱", price: 800) }
   let!(:pencil) { FactoryGirl.create(:product, name: "铅笔", price: 3) }
+  let(:admin) { FactoryGirl.create(:user, :admin) }
   let(:user) { FactoryGirl.create(:user) }
   let!(:address) { FactoryGirl.create(:address, name: "张三", addr: "黑龙江哈尔滨", user: user) }
   
-  let!(:order) { FactoryGirl.create(:order, :unpaid, :boc, :kuaidi,
+  let!(:order) { FactoryGirl.create(:order, :paid, :boc, :kuaidi,
     user: user, address: address, total_price: 1500 * 2 + 800 * 3)}
-  let!(:order2) { FactoryGirl.create(:order, :unpaid, :boc, :kuaidi,
+  let!(:order2) { FactoryGirl.create(:order, :paid, :boc, :kuaidi,
     user: user, address: address, total_price: 1500 + 3 * 2)}
   
   let!(:orderitem1) { FactoryGirl.create(:orderitem, amount: 2, 
@@ -23,10 +24,9 @@ RSpec.feature "用户可以查看已提交的订单" do
     order: order2, product: pencil) }
 
   before do
-    sign_in(user)
+    sign_in(admin)
     
-    visit "/"
-    click_link "已提交的订单"
+    visit admin_orders_path
   end
 
   scenario "成功" do

@@ -24,6 +24,7 @@
       <td>
         <%= link_to "邮寄", deliver_admin_order_path( order ),
           class: "btn btn-primary" %>
+        <%= link_to "详情", order_path(order) %>
       </td>
     </tr>
   <% end %>
@@ -52,6 +53,7 @@
       <td><%= order.address.addr %></td>
       <td><%= order.pay_method %></td>
       <td><%= order.deliver_method %></td>
+      <td><%= link_to "详情", order_path(order) %></td>
     </tr>
   <% end %>
 </table>

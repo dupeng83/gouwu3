@@ -17,3 +17,5 @@
 `rails server`
 
 使用管理员帐号登录后可以点击导航栏admin链接创建新商品和处理订单, 管理员账户密码信息在db/seed.rb文件中设置. 默认的是用户名"admin@example.com", 密码"password".
+
+部署在[heroku上](https://intense-eyrie-71840.herokuapp.com/)

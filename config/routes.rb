@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   root "store#index"
 
+  ## 下面这些单个路由应该整理一下, 放到cart, address, order几个controller中,改用resource方式路由
   #首页上显示商品列表的路由
   get '/prod/:id', to: 'store#detail', as: 'pd'
 
