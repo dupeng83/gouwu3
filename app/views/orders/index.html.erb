@@ -2,6 +2,8 @@
   <h1>订单</h1>
 </header>
 
+<% if current_user.orders.any? %>
+
 <table class="table">
   <tr>
     <th>订单号</th>
@@ -31,3 +33,7 @@
     </tr>
   <% end %>
 </table>
+
+<% else %>
+  <p>您还没有提交过订单</p>
+<% end %>

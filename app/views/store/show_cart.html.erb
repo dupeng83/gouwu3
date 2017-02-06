@@ -2,6 +2,8 @@
   <h1>购物车</h1>
 </header>
 
+<% if current_user.carts.any? %>
+
 <div class="row">
   <div class="col-md-6">
     <%= form_for current_user, url: cart_submit_path, html: { class: "cart_submit" } do |user_form| %>
@@ -34,3 +36,7 @@
     <% end %>
   </div>
 </div>
+
+<% else %>
+  <p>您购物车里现在还没有商品</p>
+<% end %>

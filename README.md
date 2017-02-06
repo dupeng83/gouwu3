@@ -2,13 +2,13 @@
 
 一个购物网站
 
-使用rails 5编写
+使用Rails 5编写
 
 运行 `git clone https://github.com/dupeng83/gouwu3` 之后运行以下命令:
 
 `cd gouwu3`
 
-`bundle`
+`bundle install --without production`
 
 `rails db:migrate`
 
