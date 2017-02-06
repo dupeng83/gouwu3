@@ -7,4 +7,8 @@ class User < ApplicationRecord
   has_many :carts
   has_many :addresses
   has_many :orders
+
+  def to_s
+    "#{email} (#{admin? ? "Admin" : "User"})"
+  end
 end

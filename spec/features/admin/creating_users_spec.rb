@@ -18,12 +18,12 @@ RSpec.feature "管理员可以创建新的用户" do
     expect(page).to have_content "用户创建成功"
   end
 
-  # scenario "when the new user is an admin" do
-  #   fill_in "Email", with: "admin@example.com"
-  #   fill_in "Password", with: "password"
-  #   check "Is an admin?"
-  #   click_button "Create User"
-  #   expect(page).to have_content "User has been created."
-  #   expect(page).to have_content "admin@example.com (Admin)"
-  # end
+  scenario "如果想创建新的管理员用户" do
+    fill_in "Email", with: "admin@example.com"
+    fill_in "Password", with: "password"
+    check "设置为管理员"
+    click_button "创建用户"
+    expect(page).to have_content "用户创建成功"
+    expect(page).to have_content "admin@example.com (Admin)"
+  end
 end

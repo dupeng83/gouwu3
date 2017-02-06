@@ -1,7 +1,7 @@
 <%= simple_form_for [:admin, user] do |f| %>
   <%= f.input :email %>
   <%= f.input :password %>
-  <%= f.input :admin, label: "Is an admin?" %>
+  <%= f.input :admin, label: "设置为管理员" %>
 
   <%= f.button :submit, '创建用户', class: "btn btn-primary" %>
 <% end %>
